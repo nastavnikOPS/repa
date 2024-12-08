@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #redBox, #blueBox, #limeBox, #yellowBox{
+      width: 200px;
+      height: 200px;
+      position: absolute;
+    }
+    #redBox{background: red; top: 0; left: 0}
+    #yellowBox{background: yellow; bottom: 0; left: 0}
+    #limeBox{background: lime; top: 0; right: 0}
+    #blueBox{background: blue; bottom: 0; right: 0}
+    div{
+      height: 100px;
+      width: 100px;
+      background: red;
+      border: 1px solid black;
+      border-radius: 50%;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+    <div id="redBox"></div>
+    <div id="limeBox"></div>
+    <div id="yellowBox"></div>
+    <div id="blueBox"></div>
+  <div id="circle"></div>
+  <script>
+    let circle = document.createElement('div');
+    circle.classList.add('circle')
+    circle.onmousedown = (event)=>{
+        console.log(event.clientX, event.clientY)
+        circle.style.top = event.clientY-50+'px';
+        circle.style.left = event.clientX-50+'px';
+      window.onmousemove = (e)=>{
+        circle.style.top = e.clientY-50+'px';
+        circle.style.left = e.clientX-50+'px';
+      }
+      window.onmouseup = ()=>{
+        window.onmousemove = ()=>false;
+      }
+    };
+    document.body.append(circle)
+  </script>
+</body>
+</html>
